@@ -38,6 +38,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         GameNetworkClient.Instance.SendPlaceCard(character.id, world);
     }
 
+
     public void SelectCharacter(int index)
     {
         selectedCharacterIndex = index;
