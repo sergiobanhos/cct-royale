@@ -7,6 +7,7 @@ public class CharacterController : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] private CharacterData characterData;
+    private CharacterStats characterStats;
     [SerializeField] private HealthComponent healthComponent;
     [SerializeField] private NavMeshAgent navMeshAgent;
     public HealthComponent HealthComponent => healthComponent;
@@ -23,6 +24,11 @@ public class CharacterController : MonoBehaviour
         if (healthComponent == null)
         {
             healthComponent = GetComponent<HealthComponent>();
+        }
+
+        if (characterData)
+        {
+            this.characterStats = characterData.stats;
         }
     }
 
@@ -55,17 +61,17 @@ public class CharacterController : MonoBehaviour
 
     private void Moving()
     {
+        
         HealthComponent newTarget = GetNearestTarget();
 
         if (newTarget != currentTarget)
         {
             currentTarget = newTarget;
             this.navMeshAgent.SetDestination(currentTarget != null ? currentTarget.GetPosition() : transform.position);
-            this.navMeshAgent.speed = characterData.speed;
+            this.navMeshAgent.speed = this.characterStats.speed;
         }
 
-        float distanceToTarget = GetDistanceToTarget();
-        if (distanceToTarget <= navMeshAgent.stoppingDistance && currentTarget != null)
+        if (GetDistanceToTarget() <= this.characterStats.attackRange && currentTarget != null)
         {
             this.currentState = CharacterState.Attacking;
         }
@@ -75,10 +81,20 @@ public class CharacterController : MonoBehaviour
     {
         if (currentTarget != null)
         {
-            // Perform attack on the current target
+            attackTimer += Time.deltaTime;
+            if (attackTimer >= 1f / characterStats.attackRate)
+            {
+                currentTarget.TakeDamage(Mathf.RoundToInt(characterStats.attackDamage));
+                attackTimer = 0.0f;
+            }
+        }
+
+        if (GetDistanceToTarget() > this.characterStats.attackRange)
+        {
+            this.currentState = CharacterState.Moving;
         }
     }
-
+    
 
     private HealthComponent GetNearestTarget()
     {

@@ -9,13 +9,9 @@ public class CharacterData : ScriptableObject
     public CharacterController prefab;
 
     [Header("Stats")]
-    public float health;
-    public float speed;
-    public float attackDamage;
-    public float attackRange;
-    public float attackRate;
+    public CharacterStats stats;
 
-    public CharacterController Spawn(Vector2 world, string SenderId)
+    public CharacterController Spawn(Vec2 world, string SenderId)
     {
         CharacterController instance = Instantiate(prefab, new Vector3(world.x, 0f, world.y), Quaternion.identity);
         instance.HealthComponent.SetClientId(SenderId);
