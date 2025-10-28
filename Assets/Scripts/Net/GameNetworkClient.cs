@@ -14,9 +14,14 @@ public class GameNetworkClient : MonoSingleton<GameNetworkClient>
     public string roomId = "training";
     public string token  = "dev-token";
     public string playerName = "Player";
+    public int playerIndex = 0;
 
     private WebSocket ws;
     private string clientId;
+
+    public string ClientId => clientId;
+
+    
 
     async void Start()
     {

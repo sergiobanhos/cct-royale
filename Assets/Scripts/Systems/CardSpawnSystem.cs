@@ -6,10 +6,6 @@ using Core;
 
 public class CardSpawnSystem : MonoBehaviour
 {
-    [Header("Prefabs por kind")]
-    public GameObject giantPrefab;
-    public GameObject magePrefab;
-    public GameObject minionPrefab;
 
     private readonly Dictionary<string, GameObject> _spawned = new();
     private IDisposable _cardPlacedSub;
@@ -22,18 +18,6 @@ public class CardSpawnSystem : MonoBehaviour
 
     void OnCardPlaced(CardPlacedEvent evt)
     {
-        GameInstance.Instance.charactersContainer.GetCharacterById(evt.CardId).Spawn(evt.World);
-    }
-
-    GameObject InstantiatePrefabFor(string kind)
-    {
-        GameObject prefab = kind switch
-        {
-            "giant"  => giantPrefab,
-            "mage"   => magePrefab,
-            "minion" => minionPrefab,
-            _        => minionPrefab
-        };
-        return Instantiate(prefab);
+        GameInstance.Instance.charactersContainer.GetCharacterById(evt.CardId).Spawn(evt.World, evt.SenderId);
     }
 }
