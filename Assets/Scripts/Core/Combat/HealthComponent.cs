@@ -6,6 +6,7 @@ public class HealthComponent : MonoBehaviour, ICombatTarget
     public bool isEnemy = false;
     public int playerIndex;
     int ICombatTarget.playerIndex => playerIndex;
+    public int team = 0;
 
     public Vector3 GetPosition()
     {
