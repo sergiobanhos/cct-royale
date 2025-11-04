@@ -1,39 +1,46 @@
+using System;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(HealthComponent))]
 [RequireComponent(typeof(NavMeshAgent))]
-public class CharacterController : MonoBehaviour
+[RequireComponent(typeof(NetworkObject))]
+public class CharacterController : NetworkBehaviour
 {
     [Header("Components")]
     [SerializeField] private CharacterData characterData;
     private CharacterStats characterStats;
     [SerializeField] private HealthComponent healthComponent;
     [SerializeField] private NavMeshAgent navMeshAgent;
-    public HealthComponent HealthComponent => healthComponent;
 
     [Header("Combat")]
     private HealthComponent currentTarget;
-    public HealthComponent CurrentTarget => currentTarget;
     private float attackTimer = 0.0f;
-
     private CharacterState currentState = CharacterState.Idle;
+
+    [Header("Movement")]
+    private Vector3 lastPosition;
+
+    private ulong ownerId;
+    private int team;
+
+    public event Action OnAttack;
+
+    public void SetOwnerId(ulong clientId) => ownerId = clientId;
+    public void SetTeam(int t) => team = t;
 
     private void Awake()
     {
-        if (healthComponent == null)
-        {
-            healthComponent = GetComponent<HealthComponent>();
-        }
-
-        if (characterData)
-        {
-            this.characterStats = characterData.stats;
-        }
+        if (healthComponent == null) healthComponent = GetComponent<HealthComponent>();
+        if (navMeshAgent == null) navMeshAgent = GetComponent<NavMeshAgent>();
+        if (characterData) characterStats = characterData.stats;
     }
 
     private void Update()
     {
+        if (!IsServer) return; // movimentação e ataque só no servidor
+
         switch (currentState)
         {
             case CharacterState.Idle:
@@ -43,97 +50,88 @@ public class CharacterController : MonoBehaviour
                 Moving();
                 break;
             case CharacterState.Attacking:
-                Attack();
+                HandleAttackState();
                 break;
         }
-       
     }
 
     private void Idle()
     {
-        HealthComponent newTarget = GetNearestTarget();
-
-        if (newTarget != currentTarget)
-        {
-            this.currentState = CharacterState.Moving;
-        }
+        currentTarget = GetNearestTarget();
+        if (currentTarget != null) currentState = CharacterState.Moving;
     }
 
     private void Moving()
     {
-        
-        HealthComponent newTarget = GetNearestTarget();
-
-        if (newTarget != currentTarget)
+        if (currentTarget == null)
         {
-            currentTarget = newTarget;
-            this.navMeshAgent.SetDestination(currentTarget != null ? currentTarget.GetPosition() : transform.position);
-            this.navMeshAgent.speed = this.characterStats.speed;
+            currentTarget = GetNearestTarget();
+            if (currentTarget == null) return;
         }
 
-        if (GetDistanceToTarget() <= this.characterStats.attackRange && currentTarget != null)
+        navMeshAgent.isStopped = false;
+        navMeshAgent.speed = characterStats.speed;
+        navMeshAgent.SetDestination(currentTarget.GetPosition());
+
+        if (Vector3.Distance(transform.position, currentTarget.GetPosition()) <= characterStats.attackRange)
         {
-            this.currentState = CharacterState.Attacking;
+            currentState = CharacterState.Attacking;
         }
     }
-    
-    private void Attack()
+
+    private void HandleAttackState()
     {
-        if (currentTarget != null)
+        if (currentTarget == null || Vector3.Distance(transform.position, currentTarget.GetPosition()) > characterStats.attackRange)
         {
-            attackTimer += Time.deltaTime;
-            if (attackTimer >= 1f / characterStats.attackRate)
-            {
-                currentTarget.TakeDamage(Mathf.RoundToInt(characterStats.attackDamage));
-                attackTimer = 0.0f;
-            }
+            currentState = CharacterState.Moving;
+            return;
         }
 
-        if (GetDistanceToTarget() > this.characterStats.attackRange)
+        navMeshAgent.isStopped = true;
+        attackTimer += Time.deltaTime;
+
+        if (attackTimer >= 1f / characterStats.attackRate)
         {
-            this.currentState = CharacterState.Moving;
+            currentTarget.TakeDamage(Mathf.RoundToInt(characterStats.attackDamage));
+            attackTimer = 0f;
+            AttackRpc();
         }
     }
-    
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void AttackRpc()
+    {
+        OnAttack?.Invoke();
+    }
 
     private HealthComponent GetNearestTarget()
     {
-        HealthComponent nearestTarget = null;
-        float nearestDistanceSqr = Mathf.Infinity;
-        Vector3 currentPosition = transform.position;
-        HealthComponent[] allTargets = FindObjectsByType<HealthComponent>(FindObjectsSortMode.None);
+        HealthComponent nearest = null;
+        float nearestDist = Mathf.Infinity;
+        var allTargets = FindObjectsByType<HealthComponent>(FindObjectsSortMode.None);
 
-        foreach (HealthComponent target in allTargets)
+        foreach (var target in allTargets)
         {
-            if (!target.isEnemy)
-                continue;
+            // if (target.team == team) continue; // ignora aliados
+            if (target.gameObject == gameObject) continue;
 
-            if (this.healthComponent.clientId == target.clientId)
-                continue;
-
-            if (target.gameObject == this.gameObject)
-                continue;
-
-            float distanceSqr = (target.GetPosition() - currentPosition).sqrMagnitude;
-            if (distanceSqr < nearestDistanceSqr)
+            float dist = (target.GetPosition() - transform.position).sqrMagnitude;
+            if (dist < nearestDist)
             {
-                nearestDistanceSqr = distanceSqr;
-                nearestTarget = target;
+                nearestDist = dist;
+                nearest = target;
             }
         }
 
-        return nearestTarget;
+        return nearest;
     }
 
-    private float GetDistanceToTarget()
+    public Vector3 GetVelocity()
     {
-        if (currentTarget != null)
-        {
-            float distance = Vector3.Distance(transform.position, currentTarget.GetPosition());
-            return distance;
-        }
-        return 0;
-    }   
+        Vector3 velocity = (transform.position - lastPosition) / Time.deltaTime;
+
+        return transform.InverseTransformDirection(velocity);
+    }
 }
 
 enum CharacterState

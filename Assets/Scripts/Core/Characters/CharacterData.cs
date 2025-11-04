@@ -14,7 +14,7 @@ public class CharacterData : ScriptableObject
     public CharacterController Spawn(Vec2 world, string SenderId)
     {
         CharacterController instance = Instantiate(prefab, new Vector3(world.x, 0f, world.y), Quaternion.identity);
-        instance.HealthComponent.SetClientId(SenderId);
+        // instance.HealthComponent.SetClientId(SenderId);
         return instance;
     }
 }

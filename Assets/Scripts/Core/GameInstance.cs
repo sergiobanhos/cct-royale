@@ -24,8 +24,6 @@ public class GameInstance : MonoSingleton<GameInstance>
         {
             charactersContainer = GetComponent<CharactersContainer>();
         }
-
-
     }
 
     private void InitializeTowers()
