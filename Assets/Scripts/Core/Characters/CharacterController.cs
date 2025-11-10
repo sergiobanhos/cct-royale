@@ -112,7 +112,7 @@ public class CharacterController : NetworkBehaviour
 
         foreach (var target in allTargets)
         {
-            // if (target.team == team) continue; // ignora aliados
+            if (target.team == team) continue; // ignora aliados
             if (target.gameObject == gameObject) continue;
 
             float dist = (target.GetPosition() - transform.position).sqrMagnitude;

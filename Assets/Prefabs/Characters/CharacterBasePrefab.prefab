@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2729685462888637012}
   - component: {fileID: 8416223192099507410}
   m_Layer: 0
-  m_Name: GiantPrefab
+  m_Name: CharacterBasePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5,5 +5,6 @@ public interface ICombatTarget
     public Vector3 GetPosition();
     public void TakeDamage(int damage);
 
-    public int playerIndex { get; }
+    public int GetTeam();
+    public void SetTeam(int team);
 }

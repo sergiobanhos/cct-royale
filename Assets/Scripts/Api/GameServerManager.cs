@@ -1,14 +1,18 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Unity.Netcode;
 using CctRoyale.GameServer;
+using System.Linq;
 
 namespace CctRoyale.Server
 {
     public class GameServerManager : MonoBehaviour
     {
+        public static GameServerManager Instance;
+
         [Header("Match Configuration")]
         public string matchId;
         public ushort port = 7777;
@@ -23,11 +27,23 @@ namespace CctRoyale.Server
         private bool matchStarted = false;
         private bool matchFinished = false;
         private int playerCount = 0;
+        private List<PlayerController> players = new List<PlayerController>();
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
 
         private void Start()
         {
-            DontDestroyOnLoad(gameObject);
-
             // Check if this is a client build
             if (!Application.isBatchMode)
             {
@@ -93,14 +109,38 @@ namespace CctRoyale.Server
                 Debug.Log($"[GameServerManager] Server started - Match {matchId} | Port {port}");
         }
 
+        private int ChooseTeam(ulong clientId)
+        {
+            int countTeam0 = 0;
+            int countTeam1 = 0;
+
+            foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
+            {
+                var player = client.PlayerObject.GetComponent<PlayerController>();
+                if (player.Team.Value == 0) countTeam0++;
+                else if (player.Team.Value == 1) countTeam1++;
+            }
+
+            return countTeam0 <= countTeam1 ? 0 : 1;
+        }
+
         private void OnClientConnected(ulong clientId)
         {
             playerCount++;
-            
+
             if (debugMode)
                 Debug.Log($"Client connected: {clientId} (total: {playerCount})");
 
-            // When both players are connected, start the match
+            if (!NetworkManager.Singleton.IsServer) return;
+
+            int team = ChooseTeam(clientId);
+
+            if (NetworkManager.Singleton.ConnectedClients.TryGetValue(clientId, out var networkClient))
+            {
+                var player = networkClient.PlayerObject.GetComponent<PlayerController>();
+                players.Add(player);
+            }
+
             if (playerCount == 2)
             {
                 if (debugMode)
@@ -301,10 +341,10 @@ namespace CctRoyale.Server
         private void OnDestroy()
         {
             if (!Application.isBatchMode)
-                {
-                    Debug.Log("Client build detected. Skipping match end.");
-                    return;
-                }
+            {
+                Debug.Log("Client build detected. Skipping match end.");
+                return;
+            }
 
             // Clean up network callbacks
             if (NetworkManager.Singleton != null)
@@ -315,9 +355,14 @@ namespace CctRoyale.Server
 
             if (!matchFinished)
             {
-                
+
                 FinishMatch();
             }
+        }
+        
+        public int AssignTeam(PlayerController player)
+        {
+            return playerCount + 1;
         }
     }
 }

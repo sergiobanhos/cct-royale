@@ -7,14 +7,14 @@ public class SceneLoader : MonoBehaviour
     [Header("Fade opcional")]
     [SerializeField] private CanvasGroup fadeCanvas; // arraste o CanvasGroup do fade aqui
 
-    private static SceneLoader instance;
+    public static SceneLoader Instance;
 
     private void Awake()
     {
         // Garante que só existe um loader persistente
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
