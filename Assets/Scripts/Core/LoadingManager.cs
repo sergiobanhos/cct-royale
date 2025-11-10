@@ -26,7 +26,7 @@ public class LoadingManager : MonoBehaviour
         gameLevel.allowSceneActivation = false;
 
         string[] tips = {
-            "Despertando os servos do rei...",
+            // "Despertando os servos do rei...",
             "Afiando as espadas...",
             "Preparando o campo de batalha..."
         };
@@ -34,7 +34,7 @@ public class LoadingManager : MonoBehaviour
 
         while (!gameLevel.isDone)
         {
-            float progress = Mathf.Clamp01(gameLevel.progress / 0.9f);
+            float progress = Mathf.Clamp01(gameLevel.progress / 0.5f);
             progressBar.value = progress;
 
             // alterna texto de loading
@@ -67,7 +67,7 @@ public class LoadingManager : MonoBehaviour
             else if (textAlpha >= 1f) fadingOut = true;
 
             loadingText.alpha = textAlpha;
-            loadingText.rectTransform.anchoredPosition = new Vector2(0, Mathf.Sin(Time.time * 2f) * 10f);
+            // loadingText.rectTransform.anchoredPosition = new Vector2(0, Mathf.Sin(Time.time * 2f) * 10f);
         }
     }
 }
