@@ -7,6 +7,6 @@ public class UI_StartMatchButton : MonoBehaviour
     {
 
         SceneLoader.Instance.LoadScene("MatchmakingScene");
-        NetworkManager.Singleton.StartClient();
+        // NetworkManager.Singleton.StartClient();
     }
 }

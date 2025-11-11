@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using CctRoyale.Api;
+using UnityEngine.SceneManagement;
 
 namespace CctRoyale.Auth
 {
@@ -103,8 +104,9 @@ namespace CctRoyale.Auth
                 {
                     if (debugMode)
                         Debug.Log($"Login successful for user: {response.data.user.username}");
-                    
+
                     OnLoginSuccess?.Invoke($"Welcome back, {response.data.user.username}!");
+                    SceneManager.LoadScene("MenuScene");
                 }
                 else
                 {
