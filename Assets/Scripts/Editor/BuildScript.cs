@@ -1,38 +1,55 @@
 using UnityEditor;
+using UnityEditor.Build;
+using UnityEditor.Build.Reporting;
 
-public static class BuildScript{
+public static class BuildScript
+{
+    private static readonly string[] scenes = new[]
+    {
+        "Assets/Scenes/ServerBootstrap.unity",
+        "Assets/Scenes/LoginScene.unity",
+        "Assets/Scenes/MenuScene.unity",
+        "Assets/Scenes/BattleScene.unity",
+        "Assets/Scenes/MatchmakingScene.unity"
+    };
+
     [MenuItem("Build/Build Client and Server")]
     public static void BuildClientAndServer()
     {
-        var scenes = new[] {
-            "Assets/Scenes/ServerBootstrap.unity",
-            "Assets/Scenes/LoginScene.unity",
-            "Assets/Scenes/MenuScene.unity",
-            "Assets/Scenes/BattleScene.unity",
-            "Assets/Scenes/MatchmakingScene.unity"
+        // Build do client normal
+        BuildPlayerOptions clientOptions = new BuildPlayerOptions
+        {
+            scenes = scenes,
+            locationPathName = "Builds/macOSClient/CCTRoyale.app",
+            target = BuildTarget.StandaloneOSX,
+            options = BuildOptions.None,
+            subtarget = (int)StandaloneBuildSubtarget.Player
         };
+        BuildPipeline.BuildPlayer(clientOptions);
 
-        // Build client
-        BuildPipeline.BuildPlayer(scenes, "Builds/macOSClient/CCTRoyale.app",
-            BuildTarget.StandaloneOSX, BuildOptions.None);
-
-        // Build server (headless)
-        BuildPipeline.BuildPlayer(scenes, "Builds/macOSServer",
-            BuildTarget.StandaloneOSX, BuildOptions.EnableHeadlessMode);
+        // Build do servidor (headless)
+        BuildPlayerOptions serverOptions = new BuildPlayerOptions
+        {
+            scenes = scenes,
+            locationPathName = "Builds/macOSServer",
+            target = BuildTarget.StandaloneOSX,
+            options = BuildOptions.None,
+            subtarget = (int)StandaloneBuildSubtarget.Server
+        };
+        BuildPipeline.BuildPlayer(serverOptions);
     }
 
-    [MenuItem("Build/BuildServer")]
+    [MenuItem("Build/Build Server Only")]
     public static void BuildServer()
     {
-        var scenes = new[] {
-            "Assets/Scenes/ServerBootstrap.unity",
-            "Assets/Scenes/LoginScene.unity",
-            "Assets/Scenes/MenuScene.unity",
-            "Assets/Scenes/BattleScene.unity",
-            "Assets/Scenes/MatchmakingScene.unity"
+        BuildPlayerOptions serverOptions = new BuildPlayerOptions
+        {
+            scenes = scenes,
+            locationPathName = "Builds/macOSServer",
+            target = BuildTarget.StandaloneOSX,
+            options = BuildOptions.None,
+            subtarget = (int)StandaloneBuildSubtarget.Server
         };
-        // Build server (headless)
-        BuildPipeline.BuildPlayer(scenes, "Builds/macOSServer",
-            BuildTarget.StandaloneOSX, BuildOptions.EnableHeadlessMode);
+        BuildPipeline.BuildPlayer(serverOptions);
     }
 }

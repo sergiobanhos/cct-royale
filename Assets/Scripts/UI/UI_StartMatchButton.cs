@@ -1,12 +1,13 @@
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UI_StartMatchButton : MonoBehaviour
 {
     public void EnterMatch()
     {
 
-        SceneLoader.Instance.LoadScene("MatchmakingScene");
+        SceneManager.LoadScene("MatchmakingScene");
         // NetworkManager.Singleton.StartClient();
     }
 }

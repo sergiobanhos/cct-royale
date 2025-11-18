@@ -37,7 +37,7 @@ public class CharacterAnimation : MonoBehaviour
 
     private void HandleHitAnimation()
     {
-        
+        characterController.HandleAttackTarget();
     }
 
     private void OnDisable()

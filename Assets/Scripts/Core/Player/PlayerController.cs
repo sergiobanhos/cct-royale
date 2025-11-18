@@ -75,7 +75,6 @@ public class PlayerController : NetworkBehaviour
         }
     }
 
-    // Este método é chamado pelo cliente, mas executa no servidor
     [ServerRpc]
     private void SpawnCardServerRpc(int index, Vector2 world, ServerRpcParams rpcParams = default)
     {
@@ -93,6 +92,9 @@ public class PlayerController : NetworkBehaviour
         var characterCtrl = characterInstance.GetComponent<CharacterController>();
         characterCtrl.SetTeam(Team.Value);
         characterCtrl.SetOwnerId(rpcParams.Receive.SenderClientId);
+
+        var healthComp = characterInstance.GetComponent<HealthComponent>();
+        healthComp.SetHealth(character.health);
     }
 
     [ServerRpc]

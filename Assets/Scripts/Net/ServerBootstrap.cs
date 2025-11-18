@@ -31,9 +31,9 @@ public class ServerBootstrap : MonoBehaviour
 
         Debug.Log($"[ServerBootstrap] Match {matchId} | Port {port}");
 
+        NetworkManager.Singleton.StartServer();
         NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
         NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnected;
-        NetworkManager.Singleton.StartServer();
     }
 
     private int playerCount = 0;

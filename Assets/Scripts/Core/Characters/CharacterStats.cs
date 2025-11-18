@@ -4,7 +4,7 @@ using UnityEngine;
 public class CharacterStats
 {
     public float health;
-    public float speed;
+    public float moveSpeed;
     public float attackDamage;
     public float attackRange;
     public float attackRate;

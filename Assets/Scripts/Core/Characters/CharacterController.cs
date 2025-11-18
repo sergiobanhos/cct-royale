@@ -9,7 +9,7 @@ using UnityEngine.AI;
 public class CharacterController : NetworkBehaviour
 {
     [Header("Components")]
-    [SerializeField] private CharacterData characterData;
+    [SerializeField] public CharacterData characterData;
     private CharacterStats characterStats;
     [SerializeField] private HealthComponent healthComponent;
     [SerializeField] private NavMeshAgent navMeshAgent;
@@ -63,14 +63,16 @@ public class CharacterController : NetworkBehaviour
 
     private void Moving()
     {
+        currentTarget = GetNearestTarget();
+
         if (currentTarget == null)
         {
-            currentTarget = GetNearestTarget();
-            if (currentTarget == null) return;
+            currentState = CharacterState.Idle;
+            return;
         }
 
         navMeshAgent.isStopped = false;
-        navMeshAgent.speed = characterStats.speed;
+        navMeshAgent.speed = characterStats.moveSpeed;
         navMeshAgent.SetDestination(currentTarget.GetPosition());
 
         if (Vector3.Distance(transform.position, currentTarget.GetPosition()) <= characterStats.attackRange)
@@ -87,15 +89,23 @@ public class CharacterController : NetworkBehaviour
             return;
         }
 
+        LookToTarget();
+
         navMeshAgent.isStopped = true;
+        navMeshAgent.speed = 0f;
         attackTimer += Time.deltaTime;
 
         if (attackTimer >= 1f / characterStats.attackRate)
         {
-            currentTarget.TakeDamage(Mathf.RoundToInt(characterStats.attackDamage));
+            // currentTarget.TakeDamage(Mathf.RoundToInt(characterStats.attackDamage));
             attackTimer = 0f;
             AttackRpc();
         }
+    }
+
+    public void HandleAttackTarget()
+    {
+        this.characterData.BaseAttack(this, currentTarget);
     }
 
     [Rpc(SendTo.ClientsAndHost)]
@@ -115,7 +125,12 @@ public class CharacterController : NetworkBehaviour
             if (target.team == team) continue; // ignora aliados
             if (target.gameObject == gameObject) continue;
 
-            float dist = (target.GetPosition() - transform.position).sqrMagnitude;
+            Vector3 targetPosition = target.GetPosition();
+            Vector3 selfPosition = transform.position;
+
+            targetPosition.y = selfPosition.y;
+
+            float dist = (targetPosition - selfPosition).magnitude;
             if (dist < nearestDist)
             {
                 nearestDist = dist;
@@ -126,9 +141,24 @@ public class CharacterController : NetworkBehaviour
         return nearest;
     }
 
+    private void LookToTarget()
+    {
+        if (currentTarget == null) return;
+
+        Vector3 targetPosition = currentTarget.GetPosition();
+        targetPosition.y = transform.position.y;
+
+        Vector3 direction = (targetPosition - transform.position).normalized;
+        if (direction == Vector3.zero) return;
+
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        transform.rotation = lookRotation;
+    }
+
     public Vector3 GetVelocity()
     {
         Vector3 velocity = (transform.position - lastPosition) / Time.deltaTime;
+        lastPosition = transform.position;
 
         return transform.InverseTransformDirection(velocity);
     }

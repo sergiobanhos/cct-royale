@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 572471884
+  GlobalObjectIdHash: 2179187931
   InScenePlacedSourceGlobalObjectIdHash: 2179187931
   DeferredDespawnTick: 0
   Ownership: 1
@@ -71,8 +71,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  Team:
+    m_InternalValue: 0
+  Elixir:
+    m_InternalValue: 0
   characters:
-  - giant
+  - carlos-eugenio
   selectedCharacterIndex: 0
-  team: 0
   spawnRoot: {fileID: 0}
+  maxElixir: 10
+  elixirRegenRate: 1
+  doubleElixirMultiplier: 2
