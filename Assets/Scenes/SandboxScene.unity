@@ -471,6 +471,44 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245428952}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &261398999
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 261399000}
+  m_Layer: 5
+  m_Name: Match UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &261399000
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261398999}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1485496065}
+  - {fileID: 1593839724}
+  - {fileID: 484367177}
+  m_Father: {fileID: 1278755633}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &320903099
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,6 +767,41 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &338474466
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 338474467}
+  m_Layer: 5
+  m_Name: Player UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &338474467
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338474466}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1278755633}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &351137408
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,7 +908,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 7, z: 0}
   m_LocalScale: {x: 10, y: 15, z: 10}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 351137410}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -938,18 +1011,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 484367176}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1278755633}
+  m_Father: {fileID: 261399000}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -225.25, y: -280}
+  m_AnchoredPosition: {x: 0, y: -479.71814}
   m_SizeDelta: {x: 450.49402, y: 206.55798}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &484367178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1136,6 +1209,7 @@ GameObject:
   - component: {fileID: 514993316}
   - component: {fileID: 514993315}
   - component: {fileID: 514993314}
+  - component: {fileID: 514993317}
   m_Layer: 0
   m_Name: Network Manager
   m_TagString: Untagged
@@ -1210,6 +1284,7 @@ MonoBehaviour:
     NetworkTopology: 0
     UseCMBService: 0
     AutoSpawnPlayerPrefabClientSide: 1
+    NetworkMessageMetrics: 1
     NetworkProfilingMetrics: 1
     OldPrefabList: []
   RunInBackground: 1
@@ -1229,6 +1304,45 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &514993317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514993313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d9db9626104da59357651088226725, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PresetAsset: {fileID: 0}
+  m_PresetReference:
+    rid: 4645008382109156028
+  m_Scenario:
+    rid: -2
+  m_IsScenarioSettingsFolded: 0
+  AutoRunScenario: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 4645008382109156028
+      type: {class: NetworkSimulatorPreset, ns: Unity.Multiplayer.Tools.NetworkSimulator.Runtime, asm: Unity.Multiplayer.Tools.NetworkSimulator.Runtime}
+      data:
+        <Name>k__BackingField: 'Mobile 3.75G [HDSDPA+, H+, ''11]'
+        <Description>k__BackingField: 'Suitable for synchronous multiplayer, except
+          that ping (and overall connection quality and stability) may be quite poor.
+
+
+          Expect
+          to handle players dropping all packets in bursts of 1-60s. I.e. Ensure
+          you handle reconnections.'
+        <PacketDelayMs>k__BackingField: 130
+        <PacketJitterMs>k__BackingField: 30
+        <PacketLossInterval>k__BackingField: 0
+        <PacketLossPercent>k__BackingField: 6
 --- !u!1 &588966106
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,7 +1372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f5ff5006fab4e3586362f9519d3e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charactersContainer: {fileID: 11400000, guid: a205d3dbb9cb549b4a63212b12ab043d, type: 2}
+  cardsContainer: {fileID: 11400000, guid: a205d3dbb9cb549b4a63212b12ab043d, type: 2}
 --- !u!4 &588966108
 Transform:
   m_ObjectHideFlags: 0
@@ -1433,10 +1547,16 @@ MonoBehaviour:
     m_InternalValue: 0
   isDoubleElixir:
     m_InternalValue: 0
-  matchStarted:
+  matchStatus:
     m_InternalValue: 0
   team1PlayerController: {fileID: 0}
   team2PlayerController: {fileID: 0}
+  team1KingTower: {fileID: 1471980504}
+  team1QueenTower1: {fileID: 1471980504}
+  team1QueenTower2: {fileID: 351137409}
+  team2KingTower: {fileID: 485414688}
+  team2QueenTower1: {fileID: 485414688}
+  team2QueenTower2: {fileID: 1431184607}
 --- !u!4 &960067214
 Transform:
   m_ObjectHideFlags: 0
@@ -1778,7 +1898,7 @@ GameObject:
   - component: {fileID: 1278755630}
   - component: {fileID: 1278755629}
   m_Layer: 5
-  m_Name: Match Controller UI
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1799,6 +1919,9 @@ MonoBehaviour:
   timerText: {fileID: 1485496066}
   doubleElixirIndicator: {fileID: 484367176}
   matchStatusText: {fileID: 1593839722}
+  finishedMatchPanel: {fileID: 0}
+  finishedMatchText: {fileID: 0}
+  finishedMatchButton: {fileID: 0}
 --- !u!114 &1278755630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1874,9 +1997,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1485496065}
-  - {fileID: 1593839724}
-  - {fileID: 484367177}
+  - {fileID: 261399000}
+  - {fileID: 338474467}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2077,18 +2199,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1485496064}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1278755633}
+  m_Father: {fileID: 261399000}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -225.3208, y: -103.28198}
+  m_AnchoredPosition: {x: 0, y: -299}
   m_SizeDelta: {x: 450.49402, y: 206.55798}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1485496066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2631,18 +2753,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593839721}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1278755633}
+  m_Father: {fileID: 261399000}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -225.25, y: -190}
+  m_AnchoredPosition: {x: 0, y: -389.71826}
   m_SizeDelta: {x: 450.49402, y: 206.55798}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!1 &1720514438
 GameObject:
   m_ObjectHideFlags: 0
@@ -3002,8 +3124,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 2.2222223, z: 17.777779}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 10, y: 1, z: 17}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3037,7 +3159,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 6837043cc904540b2a1367c9e2448815, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: b4f293b8438424df6b10c96d18f76983, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

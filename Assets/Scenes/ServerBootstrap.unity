@@ -471,7 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f5ff5006fab4e3586362f9519d3e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charactersContainer: {fileID: 11400000, guid: a205d3dbb9cb549b4a63212b12ab043d, type: 2}
+  cardsContainer: {fileID: 11400000, guid: a205d3dbb9cb549b4a63212b12ab043d, type: 2}
 --- !u!4 &1445491112
 Transform:
   m_ObjectHideFlags: 0
@@ -498,6 +498,7 @@ GameObject:
   - component: {fileID: 2034894722}
   - component: {fileID: 2034894721}
   - component: {fileID: 2034894723}
+  - component: {fileID: 2034894724}
   m_Layer: 0
   m_Name: Network Manager
   m_TagString: Untagged
@@ -543,6 +544,7 @@ MonoBehaviour:
     NetworkTopology: 0
     UseCMBService: 0
     AutoSpawnPlayerPrefabClientSide: 1
+    NetworkMessageMetrics: 1
     NetworkProfilingMetrics: 1
     OldPrefabList: []
   RunInBackground: 1
@@ -591,6 +593,45 @@ MonoBehaviour:
     PacketDelayMS: 0
     PacketJitterMS: 0
     PacketDropRate: 0
+--- !u!114 &2034894724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034894720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d9db9626104da59357651088226725, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PresetAsset: {fileID: 0}
+  m_PresetReference:
+    rid: 4645008382109155527
+  m_Scenario:
+    rid: -2
+  m_IsScenarioSettingsFolded: 0
+  AutoRunScenario: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 4645008382109155527
+      type: {class: NetworkSimulatorPreset, ns: Unity.Multiplayer.Tools.NetworkSimulator.Runtime, asm: Unity.Multiplayer.Tools.NetworkSimulator.Runtime}
+      data:
+        <Name>k__BackingField: 'Mobile 4G [4G, LTE, ''13]'
+        <Description>k__BackingField: 'Suitable for synchronous multiplayer, except
+          that ping (and overall connection quality and stability) may be quite poor.
+
+
+          Expect
+          to handle players dropping all packets in bursts of 1-60s. I.e. Ensure
+          you handle reconnections.'
+        <PacketDelayMs>k__BackingField: 100
+        <PacketJitterMs>k__BackingField: 20
+        <PacketLossInterval>k__BackingField: 0
+        <PacketLossPercent>k__BackingField: 4
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

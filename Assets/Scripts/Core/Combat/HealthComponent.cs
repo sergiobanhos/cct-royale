@@ -10,6 +10,7 @@ public class HealthComponent : NetworkBehaviour, ICombatTarget
     public bool isEnemy = false;
     public int team = 0;
     public Action<float> OnHealthChanged;
+    public Action OnDeath;
 
     public void SetHealth(float health)
     {
@@ -31,7 +32,8 @@ public class HealthComponent : NetworkBehaviour, ICombatTarget
 
         if (currentHealth.Value == 0)
         {
-            NetworkObject.Despawn(); 
+            OnDeath?.Invoke();
+            NetworkObject?.Despawn(); 
         }
 
         NotifyTakeDamageClientRpc(currentHealth.Value / maxHealth);
@@ -53,5 +55,10 @@ public class HealthComponent : NetworkBehaviour, ICombatTarget
     public int GetTeam()
     {
         return team;
+    }
+
+    public bool IsDead()
+    {
+        return currentHealth.Value <= 0;
     }
 }

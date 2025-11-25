@@ -8,7 +8,7 @@ public class CameraController : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        if (IsServer)
+        if (IsServer && !IsHost)
         {
             Debug.Log("CameraController: Rodando no servidor, não ativa câmeras.");
             cameraTeam1.SetActive(false);
@@ -26,7 +26,7 @@ public class CameraController : NetworkBehaviour
         Debug.Log($"CameraController: Time do jogador local é {localPlayer.Team.Value}");
 
         // Ativa a câmera correta
-        if (localPlayer.Team.Value == 1)
+        if (localPlayer.Team.Value == 1 || localPlayer.Team.Value == 0)
         {
             cameraTeam1.SetActive(true);
             cameraTeam2.SetActive(false);

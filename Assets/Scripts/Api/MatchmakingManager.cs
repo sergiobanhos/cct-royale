@@ -38,6 +38,8 @@ public class MatchmakingManager : MonoBehaviour
         yield return new WaitForSeconds(8f); // Small delay to ensure transport is set up
 
         enterMatchButton.SetActive(true);
+
+        // EnterMatch();
     }
 
     public void LeaveMatchmaking()
