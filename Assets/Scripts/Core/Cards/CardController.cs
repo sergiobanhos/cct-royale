@@ -15,6 +15,8 @@ public abstract class CardController : NetworkBehaviour
     public int GetTeam() {
         return team.Value;
     }
+
+    public virtual void Activate() { }
 }
 
 public class CardController<TCardData> : CardController where TCardData : CardData

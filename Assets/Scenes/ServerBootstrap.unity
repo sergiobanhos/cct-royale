@@ -607,7 +607,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PresetAsset: {fileID: 0}
   m_PresetReference:
-    rid: 4645008382109155527
+    rid: 4645008382109156278
   m_Scenario:
     rid: -2
   m_IsScenarioSettingsFolded: 0
@@ -617,21 +617,15 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 4645008382109155527
+    - rid: 4645008382109156278
       type: {class: NetworkSimulatorPreset, ns: Unity.Multiplayer.Tools.NetworkSimulator.Runtime, asm: Unity.Multiplayer.Tools.NetworkSimulator.Runtime}
       data:
-        <Name>k__BackingField: 'Mobile 4G [4G, LTE, ''13]'
-        <Description>k__BackingField: 'Suitable for synchronous multiplayer, except
-          that ping (and overall connection quality and stability) may be quite poor.
-
-
-          Expect
-          to handle players dropping all packets in bursts of 1-60s. I.e. Ensure
-          you handle reconnections.'
-        <PacketDelayMs>k__BackingField: 100
-        <PacketJitterMs>k__BackingField: 20
+        <Name>k__BackingField: None
+        <Description>k__BackingField: 
+        <PacketDelayMs>k__BackingField: 0
+        <PacketJitterMs>k__BackingField: 0
         <PacketLossInterval>k__BackingField: 0
-        <PacketLossPercent>k__BackingField: 4
+        <PacketLossPercent>k__BackingField: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

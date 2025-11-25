@@ -21,9 +21,9 @@ MonoBehaviour:
   previewPrefab: {fileID: 5923148471053484114, guid: 84afca4916fb741c78ddd600a7dfd5ee, type: 3}
   stats:
     health: 300
-    moveSpeed: 6
+    moveSpeed: 4
     attackDamage: 20
     attackRange: 12
-    attackRate: 1
+    attackRate: 1.5
   isRanged: 0
   projectilePrefab: {fileID: 0}

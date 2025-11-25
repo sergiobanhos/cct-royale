@@ -15,11 +15,23 @@ public class SelectedCardPreview : MonoBehaviour
     {
         if (!previewObject) return;
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        var mouseData = PlayerController.GetMousePosition();
+
+        if (mouseData.isValid)
         {
-            Vector2 spawnPoint = new Vector2(hit.point.x, hit.point.z);
-            previewObject.transform.position = new Vector3(spawnPoint.x, 0, spawnPoint.y);
+            if (previewObject.activeSelf == false)
+            {
+                previewObject.SetActive(true);
+            }
+
+            previewObject.transform.position = mouseData.position;
+        }
+        else
+        {
+            if (previewObject.activeSelf == true)
+            {
+                previewObject.SetActive(false);
+            }
         }
     }
 

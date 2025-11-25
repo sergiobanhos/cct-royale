@@ -15,6 +15,11 @@ public class SpellController : CardController<SpellCardData>
     {
         base.OnNetworkSpawn();
         
+      
+    }
+
+    public override void Activate()
+    {
         if (IsServer)
         {
             // Store the target position
@@ -119,7 +124,7 @@ public class SpellController : CardController<SpellCardData>
     private void ApplySpellEffect(Vector3 position, float damageAmount)
     {
         List<HealthComponent> targets = CombatUtility.FindHealthComponentsInRadius(position, cardData.radius, GetTeam(), true);
-
+        Debug.Log($"Meu time: {GetTeam()}");
         Debug.Log(targets.Count);
 
         foreach (var health in targets.ToArray())
