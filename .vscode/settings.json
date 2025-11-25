@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "CCT Royale.sln"
+    "dotnet.defaultSolution": "cct-royale.sln"
 }
