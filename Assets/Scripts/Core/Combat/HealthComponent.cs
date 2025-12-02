@@ -8,8 +8,9 @@ public class HealthComponent : NetworkBehaviour, ICombatTarget
     private float maxHealth = 100f;
 
     public bool isEnemy = false;
-    public int team = 0;
+    public NetworkVariable<int> team = new NetworkVariable<int>(0);
     public Action<float> OnHealthChanged;
+    public Action<int> OnTeamChanged;
     public Action OnDeath;
 
     public void SetHealth(float health)
@@ -49,12 +50,13 @@ public class HealthComponent : NetworkBehaviour, ICombatTarget
 
     public void SetTeam(int team)
     {
-        this.team = team;
+        this.team.Value = team;
+        OnTeamChanged?.Invoke(team);
     }
 
     public int GetTeam()
     {
-        return team;
+        return team.Value;
     }
 
     public bool IsDead()

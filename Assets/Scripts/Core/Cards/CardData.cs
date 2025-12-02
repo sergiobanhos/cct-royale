@@ -15,6 +15,15 @@ public class CardData : ScriptableObject
     [Header("Stats")]
     public CardStats stats;
 
+    [Header("Effects")]
+    public GameObject onHitEffect = null;
+    public AudioClip onHitSound = null; 
+
+
+    public virtual void ServerSpawn(Vector2 position, ulong ownerClientId, int team)
+    {
+        throw new System.NotImplementedException();
+    }
 
     public virtual CardController Spawn(Vector2 world, string SenderId)
     {

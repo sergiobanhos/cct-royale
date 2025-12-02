@@ -82,6 +82,9 @@ MonoBehaviour:
   cardData: {fileID: 11400000, guid: f687645cc895b44648aede6475ff9373, type: 2}
   healthComponent: {fileID: -5993338048900497432}
   navMeshAgent: {fileID: 3739595695708797111}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!136 &591675145998313403
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -101,7 +104,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.35
+  m_Radius: 0.2
   m_Height: 1.8417772
   m_Direction: 1
   m_Center: {x: 0, y: 0.7855548, z: 0}
@@ -131,7 +134,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 5094390769684080849}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.4
+  m_Radius: 0.21
   m_Speed: 10
   m_Acceleration: 999
   avoidancePriority: 50
@@ -440,6 +443,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1974476592493102876, guid: 35508e22135d14d90864612c29f1703a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2270741299648422439, guid: 35508e22135d14d90864612c29f1703a, type: 3}
+      propertyPath: reverseDirection
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5361303965282979274, guid: 35508e22135d14d90864612c29f1703a, type: 3}

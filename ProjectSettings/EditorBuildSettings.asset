@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SandboxScene.unity
     guid: a9fefdfb1341a4b638a8941fb91b511d
+  - enabled: 1
+    path: Assets/Scenes/BattleScene_Sandbox.unity
+    guid: 1a54d1894e67143a4874e3de162d13c2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

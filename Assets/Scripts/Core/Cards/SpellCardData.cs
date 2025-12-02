@@ -29,6 +29,23 @@ public class SpellCardData : CardData
     public bool slowsTargets = false;   // For ice/freeze spells
     public float slowAmount = 0.5f;     // 50% slow
     
+    public override void ServerSpawn(Vector2 position, ulong ownerClientId, int team)
+    {
+        // Instantiate prefab Networked
+        CardController characterInstance = Instantiate(this.prefab, new Vector3(position.x, 0, position.y), Quaternion.identity);
+
+        var networkObj = characterInstance.GetComponent<Unity.Netcode.NetworkObject>();
+
+        // Spawn
+        networkObj.SpawnWithOwnership(ownerClientId);
+
+        // Setup team and data
+        characterInstance.SetTeam(team);
+        characterInstance.SetData(this);
+
+        characterInstance.Activate();
+    }
+
     public override CardController Spawn(Vector2 world, string SenderId)
     {
         CardController instance = Instantiate(this.prefab, new Vector3(world.x, 0f, world.y), Quaternion.identity);

@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: carlos-eugenio
   cost: 5
+  deployTime: 0.15
   name: Carlos Eugenio
-  sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  sprite: {fileID: 21300000, guid: 57bce211a76f24f9cb75dde86c1603c0, type: 3}
   prefab: {fileID: 3015707497012176552, guid: e0825435da26d410e96d5e36de9ba23e, type: 3}
+  previewPrefab: {fileID: 0}
   stats:
     health: 300
     moveSpeed: 6

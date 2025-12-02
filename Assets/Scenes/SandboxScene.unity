@@ -834,9 +834,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   currentHealth:
-    m_InternalValue: 100
+    m_InternalValue: 1000
   isEnemy: 0
-  team: 1
+  team:
+    m_InternalValue: 0
 --- !u!4 &351137410
 Transform:
   m_ObjectHideFlags: 0
@@ -1156,7 +1157,8 @@ MonoBehaviour:
   currentHealth:
     m_InternalValue: 100
   isEnemy: 1
-  team: 2
+  team:
+    m_InternalValue: 0
 --- !u!4 &485414689
 Transform:
   m_ObjectHideFlags: 0
@@ -1318,7 +1320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PresetAsset: {fileID: 0}
   m_PresetReference:
-    rid: 4645008382109156341
+    rid: 9107261456999514576
   m_Scenario:
     rid: -2
   m_IsScenarioSettingsFolded: 0
@@ -1328,7 +1330,7 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 4645008382109156341
+    - rid: 9107261456999514576
       type: {class: NetworkSimulatorPreset, ns: Unity.Multiplayer.Tools.NetworkSimulator.Runtime, asm: Unity.Multiplayer.Tools.NetworkSimulator.Runtime}
       data:
         <Name>k__BackingField: 'Mobile 3.75G [HDSDPA+, H+, ''11]'
@@ -2040,7 +2042,8 @@ MonoBehaviour:
   currentHealth:
     m_InternalValue: 100
   isEnemy: 1
-  team: 2
+  team:
+    m_InternalValue: 0
 --- !u!4 &1431184608
 Transform:
   m_ObjectHideFlags: 0
@@ -2134,7 +2137,8 @@ MonoBehaviour:
   currentHealth:
     m_InternalValue: 100
   isEnemy: 0
-  team: 1
+  team:
+    m_InternalValue: 0
 --- !u!114 &1471980505
 MonoBehaviour:
   m_ObjectHideFlags: 0

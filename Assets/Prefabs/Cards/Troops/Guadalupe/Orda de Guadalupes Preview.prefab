@@ -1,0 +1,600 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2125264229432641961
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8473418098161193818}
+  m_Layer: 0
+  m_Name: Orda de Guadalupes Preview
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8473418098161193818
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125264229432641961}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8915461013621618745}
+  - {fileID: 2113506031105084869}
+  - {fileID: 1303522848390621667}
+  - {fileID: 6484366202328461724}
+  - {fileID: 1638168967955821453}
+  - {fileID: 2815552713545418270}
+  - {fileID: 8049696310803058418}
+  - {fileID: 6721907070259580779}
+  - {fileID: 3621108262498176596}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &173086294599535584
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8473418098161193818}
+    m_Modifications:
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282359722377993998, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_Name
+      value: Guadalupe Preview (5)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+--- !u!4 &3621108262498176596 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+  m_PrefabInstance: {fileID: 173086294599535584}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1672231363022193578
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8473418098161193818}
+    m_Modifications:
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282359722377993998, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_Name
+      value: Guadalupe Preview (11)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+--- !u!4 &2815552713545418270 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+  m_PrefabInstance: {fileID: 1672231363022193578}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2463790920355163223
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8473418098161193818}
+    m_Modifications:
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282359722377993998, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_Name
+      value: Guadalupe Preview (7)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+--- !u!4 &1303522848390621667 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+  m_PrefabInstance: {fileID: 2463790920355163223}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2782624413120771641
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8473418098161193818}
+    m_Modifications:
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282359722377993998, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_Name
+      value: Guadalupe Preview (10)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+--- !u!4 &1638168967955821453 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+  m_PrefabInstance: {fileID: 2782624413120771641}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3274822126369867889
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8473418098161193818}
+    m_Modifications:
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282359722377993998, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_Name
+      value: Guadalupe Preview (6)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+--- !u!4 &2113506031105084869 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+  m_PrefabInstance: {fileID: 3274822126369867889}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5448294899893222797
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8473418098161193818}
+    m_Modifications:
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282359722377993998, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_Name
+      value: Guadalupe Preview (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+--- !u!4 &8915461013621618745 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+  m_PrefabInstance: {fileID: 5448294899893222797}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6886122523235699526
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8473418098161193818}
+    m_Modifications:
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282359722377993998, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_Name
+      value: Guadalupe Preview (8)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+--- !u!4 &8049696310803058418 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+  m_PrefabInstance: {fileID: 6886122523235699526}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7627751290296185896
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8473418098161193818}
+    m_Modifications:
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282359722377993998, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_Name
+      value: Guadalupe Preview (9)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+--- !u!4 &6484366202328461724 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+  m_PrefabInstance: {fileID: 7627751290296185896}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7885571001549179615
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8473418098161193818}
+    m_Modifications:
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282359722377993998, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+      propertyPath: m_Name
+      value: Guadalupe Preview (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+--- !u!4 &6721907070259580779 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3469513159616202164, guid: 8c5ec2c333b534d35ab9c2ebd15b090b, type: 3}
+  m_PrefabInstance: {fileID: 7885571001549179615}
+  m_PrefabAsset: {fileID: 0}

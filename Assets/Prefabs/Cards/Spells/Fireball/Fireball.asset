@@ -29,7 +29,7 @@ MonoBehaviour:
   radius: 30
   damage: 100
   duration: 3
-  effectPrefab: {fileID: 467751860875805754, guid: 7c6d9bb9c8994364dbe5ba2e32dd4d13, type: 3}
+  effectPrefab: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
   projectilePrefab: {fileID: 1716542107013747703, guid: 51deb5234f03e4383a5a20802adc76ae, type: 3}
   projectileSpeed: 38
   projectileArc: 25

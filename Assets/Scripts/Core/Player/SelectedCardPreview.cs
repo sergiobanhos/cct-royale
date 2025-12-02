@@ -8,7 +8,7 @@ public class SelectedCardPreview : MonoBehaviour
 
     private void Start()
     {
-        playerController.HandleOnSelectedCardChanged += HandleOnSelectedCardChanged;
+        playerController.OnSelectedCardChanged += HandleOnSelectedCardChanged;
     }
 
     private void Update()
@@ -35,8 +35,9 @@ public class SelectedCardPreview : MonoBehaviour
         }
     }
 
-    private void HandleOnSelectedCardChanged(string cardId)
+    private void HandleOnSelectedCardChanged(int cardIndex)
     {
+        string cardId = playerController.GetSelectedCardId();
         CardData card = GameInstance.Instance.cardsContainer.GetCardById(cardId);
         UpdatePreview(card);
     }

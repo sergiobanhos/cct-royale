@@ -16,14 +16,16 @@ MonoBehaviour:
   cost: 3
   deployTime: 0.15
   name: Narak
-  sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  sprite: {fileID: 21300000, guid: 6747f70d251cf482dad55958edea1b11, type: 3}
   prefab: {fileID: 9103073289581869562, guid: 6b0e2e985a91448e0a715ef7ef256471, type: 3}
   previewPrefab: {fileID: 5923148471053484114, guid: 84afca4916fb741c78ddd600a7dfd5ee, type: 3}
   stats:
     health: 300
-    moveSpeed: 4
+    moveSpeed: 7
     attackDamage: 20
     attackRange: 12
     attackRate: 1.5
+  onHitEffect: {fileID: 0}
+  onHitSound: {fileID: 0}
   isRanged: 0
   projectilePrefab: {fileID: 0}

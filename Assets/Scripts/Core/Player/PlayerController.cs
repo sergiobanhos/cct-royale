@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CctRoyale.Server;
+using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.AI; // Required for NavMesh checking
+using UnityEngine.AI;
 using UnityEngine.EventSystems;
 using Utils;
 
@@ -13,12 +15,22 @@ public class PlayerController : NetworkBehaviour
     public NetworkVariable<float> Elixir = new NetworkVariable<float>(0f);
 
     [Header("Player Info")]
-    [SerializeField] private List<string> characters = new List<string>();
-    public int selectedCharacterIndex = 0;
-    public Action<string> HandleOnSelectedCardChanged;
+    [SerializeField] private List<string> deckCards = new List<string>(); // Deck completo (8 cartas)
+    
+    // Server-side cycle
+    private Queue<string> cardCycle = new Queue<string>(); 
 
-    [Header("References")]
-    [SerializeField] private Transform spawnRoot;
+    // Networked State
+    private NetworkList<FixedString64Bytes> netActiveCards;
+    private NetworkVariable<FixedString64Bytes> netNextCard = new NetworkVariable<FixedString64Bytes>();
+    
+    public int selectedCardIndex = 0;
+    private bool cardCycleInitialized = false;
+
+    // Actions para UI
+    public Action<List<string>> OnActiveCardsChanged; // Notifica mudança nas 3 cartas ativas
+    public Action<string> OnNextCardChanged; // Notifica mudança na próxima carta
+    public Action<int> OnSelectedCardChanged; // Notifica qual carta está selecionada (0-2)
 
     [Header("Configuração do Elixir")]
     public float maxElixir = 10f;
@@ -27,16 +39,25 @@ public class PlayerController : NetworkBehaviour
 
     [Header("Grid & Placement Settings")]
     [SerializeField] private static float gridSize = 5.0f;
-    [SerializeField] private static float navMeshCheckRadius = 0.5f; 
+    [SerializeField] private static float navMeshCheckRadius = 0.5f;
+
+    private void Awake()
+    {
+        netActiveCards = new NetworkList<FixedString64Bytes>();
+    }
 
     private void OnEnable()
     {
         Team.OnValueChanged += OnTeamChanged;
+        netActiveCards.OnListChanged += OnNetActiveCardsChanged;
+        netNextCard.OnValueChanged += OnNetNextCardChanged;
     }
 
     private void OnDisable()
     {
         Team.OnValueChanged -= OnTeamChanged;
+        netActiveCards.OnListChanged -= OnNetActiveCardsChanged;
+        netNextCard.OnValueChanged -= OnNetNextCardChanged;
     }
 
     private void OnTeamChanged(int oldValue, int newValue)
@@ -44,11 +65,57 @@ public class PlayerController : NetworkBehaviour
         Debug.Log($"Meu time mudou de {oldValue} para {newValue}");
     }
 
+    private void OnNetActiveCardsChanged(NetworkListEvent<FixedString64Bytes> changeEvent)
+    {
+        // Converte NetworkList para List<string> e notifica a UI
+        List<string> activeCardsList = new List<string>();
+        foreach (var card in netActiveCards)
+        {
+            activeCardsList.Add(card.ToString());
+        }
+        OnActiveCardsChanged?.Invoke(activeCardsList);
+        
+        // Se a carta selecionada não for mais válida (ex: índice fora do range, embora aqui seja fixo em 3), ajusta
+        if (selectedCardIndex >= activeCardsList.Count)
+        {
+            selectedCardIndex = activeCardsList.Count - 1;
+            OnSelectedCardChanged?.Invoke(selectedCardIndex);
+        }
+    }
+
+    private void OnNetNextCardChanged(FixedString64Bytes previousValue, FixedString64Bytes newValue)
+    {
+        OnNextCardChanged?.Invoke(newValue.ToString());
+    }
+
     public override void OnNetworkSpawn()
     {
         if (IsServer)
         {
-            Team.Value = GameServerManager.Instance.AssignTeam(this);
+            if (GameServerManager.Instance != null)
+            {
+                Team.Value = GameServerManager.Instance.AssignTeam(this);
+            }
+            InitializeCardCycle();
+        }
+        
+        // Force UI update on spawn
+        if (IsClient && IsOwner)
+        {
+             // Trigger initial UI update if data is already there
+            if (netActiveCards.Count > 0)
+            {
+                List<string> activeCardsList = new List<string>();
+                foreach (var card in netActiveCards)
+                {
+                    activeCardsList.Add(card.ToString());
+                }
+                OnActiveCardsChanged?.Invoke(activeCardsList);
+            }
+            if (!netNextCard.Value.IsEmpty)
+            {
+                OnNextCardChanged?.Invoke(netNextCard.Value.ToString());
+            }
         }
     }
 
@@ -66,16 +133,14 @@ public class PlayerController : NetworkBehaviour
 
         if (!IsOwner) return;
 
-        // Visualization (Optional: Just to see where the mouse is checking)
+        // Visualization
         var mouseData = GetMousePosition();
         if (mouseData.isValid)
         {
-            // Green line for valid position
             Debug.DrawLine(mouseData.position, mouseData.position + Vector3.up * 2, Color.green);
         }
         else
         {
-            // Red line for invalid position
             Debug.DrawLine(mouseData.position, mouseData.position + Vector3.up * 2, Color.red);
         }
 
@@ -84,11 +149,10 @@ public class PlayerController : NetworkBehaviour
             MouseClick();
         }
 
-        // Character Selection Input...
-        if (Input.GetKeyDown(KeyCode.Alpha1)) SelectCard(0);
-        if (Input.GetKeyDown(KeyCode.Alpha2)) SelectCard(1);
-        if (Input.GetKeyDown(KeyCode.Alpha3)) SelectCard(2);
-        if (Input.GetKeyDown(KeyCode.Alpha4)) SelectCard(3);
+        // Character Selection Input (agora só 3 cartas)
+        if (Input.GetKeyDown(KeyCode.Alpha1)) SelectActiveCard(0);
+        if (Input.GetKeyDown(KeyCode.Alpha2)) SelectActiveCard(1);
+        if (Input.GetKeyDown(KeyCode.Alpha3)) SelectActiveCard(2);
     }
 
     private void UpdateElixir()
@@ -104,14 +168,59 @@ public class PlayerController : NetworkBehaviour
         Elixir.Value = Mathf.Min(Elixir.Value + regenAmount, maxElixir);
     }
 
+    /// <summary>
+    /// Inicializa o ciclo de cartas embaralhando o deck (Server Only)
+    /// </summary>
+    private void InitializeCardCycle()
+    {
+        if (cardCycleInitialized) return;
+        
+        if (deckCards.Count < 4)
+        {
+            Debug.LogError($"Deck precisa ter pelo menos 4 cartas! Atual: {deckCards.Count}");
+            return;
+        }
+
+        Debug.Log($"Inicializando ciclo de cartas com {deckCards.Count} cartas");
+
+        // Embaralha o deck
+        List<string> shuffledDeck = deckCards.OrderBy(x => UnityEngine.Random.value).ToList();
+        
+        // Preenche o ciclo
+        cardCycle.Clear();
+        foreach (string card in shuffledDeck)
+        {
+            cardCycle.Enqueue(card);
+        }
+        
+        // Pega as 3 primeiras cartas ativas
+        netActiveCards.Clear();
+        for (int i = 0; i < 3; i++)
+        {
+            string card = cardCycle.Dequeue();
+            netActiveCards.Add(new FixedString64Bytes(card));
+            Debug.Log($"Carta ativa {i}: {card}");
+        }
+        
+        // Próxima carta
+        string next = cardCycle.Dequeue();
+        netNextCard.Value = new FixedString64Bytes(next);
+        Debug.Log($"Próxima carta: {next}");
+        
+        cardCycleInitialized = true;
+    }
+
     private void MouseClick()
     {
+        // Client-side check for valid selection
+        if (selectedCardIndex < 0 || selectedCardIndex >= netActiveCards.Count) return;
+
         var mouseData = GetMousePosition();
 
         if (mouseData.isValid)
         {
             Vector2 spawnPoint = new Vector2(mouseData.position.x, mouseData.position.z);
-            SpawnCardServerRpc(selectedCharacterIndex, spawnPoint);
+            SpawnCardServerRpc(selectedCardIndex, spawnPoint);
         }
         else
         {
@@ -119,9 +228,6 @@ public class PlayerController : NetworkBehaviour
         }
     }
 
-    /// <summary>
-    /// Returns a Tuple: (bool isValid, Vector3 position)
-    /// </summary>
     public static (bool isValid, Vector3 position) GetMousePosition()
     {
         if (EventSystem.current.IsPointerOverGameObject())
@@ -131,24 +237,18 @@ public class PlayerController : NetworkBehaviour
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         
-        // LayerMask is optional but recommended to ignore UI or Characters
         if (Physics.Raycast(ray, out RaycastHit hit)) 
         {
             Vector3 rawPoint = hit.point;
 
-            // --- 1. Grid Snapping Logic ---
-            // We round the X and Z based on the gridSize
             float snappedX = Mathf.Round(rawPoint.x / gridSize) * gridSize;
             float snappedZ = Mathf.Round(rawPoint.z / gridSize) * gridSize;
 
             Vector3 finalPos = new Vector3(snappedX, 0, snappedZ);
 
-            // --- 2. NavMesh Validation Logic ---
-            // SamplePosition checks if 'finalPos' is close enough to the NavMesh
             NavMeshHit navHit;
             bool hasNavMesh = NavMesh.SamplePosition(finalPos, out navHit, navMeshCheckRadius, NavMesh.AllAreas);
 
-            // Only valid if we found a NavMesh point nearby
             return (hasNavMesh, finalPos);
         }
 
@@ -166,33 +266,48 @@ public class PlayerController : NetworkBehaviour
     }
 
     [ServerRpc]
-    private void SpawnCardServerRpc(int index, Vector2 world, ServerRpcParams rpcParams = default)
+    private void SpawnCardServerRpc(int activeIndex, Vector2 world, ServerRpcParams rpcParams = default)
     {
-        string characterId = characters[index];
-        CardData character = GameInstance.Instance.cardsContainer.GetCardById(characterId);
+        if (activeIndex < 0 || activeIndex >= netActiveCards.Count)
+        {
+            Debug.LogError($"Índice de carta ativa inválido: {activeIndex}");
+            return;
+        }
 
-        // Security Check: Ideally, you should also check NavMesh validity on the Server here 
-        // to prevent cheaters from bypassing the client check.
+        string characterId = netActiveCards[activeIndex].ToString();
+        CardData character = GameInstance.Instance.cardsContainer.GetCardById(characterId);
 
         bool canSpendElixir = TrySpendElixir(character.cost);
         if (!canSpendElixir)
         {
+            Debug.Log($"Elixir insuficiente! Necessário: {character.cost}, Atual: {Elixir.Value}");
             return;
         }
 
-        // Instantiate prefab Networked
-        CardController characterInstance = Instantiate(character.prefab, new Vector3(world.x, 0, world.y), Quaternion.identity);
+        // Delegate spawn logic to the card data
+        character.ServerSpawn(world, rpcParams.Receive.SenderClientId, Team.Value);
 
-        var networkObj = characterInstance.GetComponent<NetworkObject>();
+        // Atualiza o ciclo de cartas no servidor
+        UpdateCardCycleServer(activeIndex);
+    }
 
-        // Spawn
-        networkObj.SpawnWithOwnership(rpcParams.Receive.SenderClientId);
-
-        // Setup team and data
-        characterInstance.SetTeam(Team.Value);
-        characterInstance.SetData(character);
-
-        characterInstance.Activate();
+    private void UpdateCardCycleServer(int activeIndex)
+    {
+        // Remove a carta usada (na verdade, substitui pela próxima)
+        string usedCard = netActiveCards[activeIndex].ToString();
+        string next = netNextCard.Value.ToString();
+        
+        // Atualiza a lista de ativas
+        netActiveCards[activeIndex] = new FixedString64Bytes(next);
+        
+        // Adiciona a carta usada de volta ao ciclo
+        cardCycle.Enqueue(usedCard);
+        
+        // Pega a nova próxima carta
+        string newNext = cardCycle.Dequeue();
+        netNextCard.Value = new FixedString64Bytes(newNext);
+        
+        Debug.Log($"Cycle Updated. Used: {usedCard}, New Active: {next}, New Next: {newNext}");
     }
 
     [ServerRpc]
@@ -201,28 +316,91 @@ public class PlayerController : NetworkBehaviour
         Team.Value = team;
     }
 
-    public void SelectCard(int index)
+    /// <summary>
+    /// Seleciona uma carta ativa (0-2)
+    /// </summary>
+    public void SelectActiveCard(int index)
     {
-        selectedCharacterIndex = index;
-        HandleOnSelectedCardChanged?.Invoke(characters[index]);
-    }
-
-    public void SelectCard(string cardId)
-    {
-        int index = characters.IndexOf(cardId);
-        if (index != -1)
+        if (index < 0 || index >= netActiveCards.Count)
         {
-            selectedCharacterIndex = index;
-            HandleOnSelectedCardChanged?.Invoke(cardId);
+            Debug.LogWarning($"Tentando selecionar carta inválida: {index}");
+            return;
         }
+
+        selectedCardIndex = index;
+        OnSelectedCardChanged?.Invoke(selectedCardIndex);
     }
 
+    // ========== MÉTODOS PÚBLICOS PARA UI ==========
+
+    /// <summary>
+    /// Retorna as 3 cartas ativas atuais
+    /// </summary>
+    public List<string> GetActiveCards()
+    {
+        List<string> list = new List<string>();
+        foreach(var c in netActiveCards) list.Add(c.ToString());
+        return list;
+    }
+
+    /// <summary>
+    /// Retorna a próxima carta
+    /// </summary>
+    public string GetNextCard()
+    {
+        return netNextCard.Value.ToString();
+    }
+
+    /// <summary>
+    /// Retorna o índice da carta selecionada (0-2)
+    /// </summary>
+    public int GetSelectedCardIndex()
+    {
+        return selectedCardIndex;
+    }
+
+    /// <summary>
+    /// Retorna o ID da carta selecionada
+    /// </summary>
+    public string GetSelectedCardId()
+    {
+        if (selectedCardIndex >= 0 && selectedCardIndex < netActiveCards.Count)
+        {
+            return netActiveCards[selectedCardIndex].ToString();
+        }
+        return "";
+    }
+
+    /// <summary>
+    /// Retorna os CardData das cartas ativas
+    /// </summary>
+    public CardData[] GetActiveCardsData()
+    {
+        CardData[] cards = new CardData[netActiveCards.Count];
+        for (int i = 0; i < netActiveCards.Count; i++)
+        {
+            cards[i] = GameInstance.Instance.cardsContainer.GetCardById(netActiveCards[i].ToString());
+        }
+        return cards;
+    }
+
+    /// <summary>
+    /// Retorna o CardData da próxima carta
+    /// </summary>
+    public CardData GetNextCardData()
+    {
+        return GameInstance.Instance.cardsContainer.GetCardById(netNextCard.Value.ToString());
+    }
+
+    /// <summary>
+    /// Retorna o deck completo
+    /// </summary>
     public CardData[] GetDeck()
     {
-        CardData[] deck = new CardData[characters.Count];
-        for (int i = 0; i < characters.Count; i++)
+        CardData[] deck = new CardData[deckCards.Count];
+        for (int i = 0; i < deckCards.Count; i++)
         {
-            deck[i] = GameInstance.Instance.cardsContainer.GetCardById(characters[i]);
+            deck[i] = GameInstance.Instance.cardsContainer.GetCardById(deckCards[i]);
         }
         return deck;
     }

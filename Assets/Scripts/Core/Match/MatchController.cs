@@ -68,6 +68,13 @@ public class MatchController : NetworkBehaviour
         team2QueenTower1.SetHealth(500f);
         team2QueenTower2.SetHealth(500f);
 
+        team1KingTower.SetTeam(1);
+        team1QueenTower1.SetTeam(1);
+        team1QueenTower2.SetTeam(1);
+        team2KingTower.SetTeam(2);
+        team2QueenTower1.SetTeam(2);
+        team2QueenTower2.SetTeam(2);
+
         team1KingTower.OnDeath += () => EndMatch();
         team2KingTower.OnDeath += () => EndMatch();
     }

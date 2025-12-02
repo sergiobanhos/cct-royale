@@ -128,7 +128,10 @@ public class TroopController : CardController<TroopCardData>
         {
             targetSearchTimer = 0f;
             FindNewTarget();
-            if (currentTarget != null) currentState = CharacterState.Moving;
+            if (currentTarget != null) {
+                currentState = CharacterState.Moving;
+                LookToMovement();
+            }
         }
     }
 
@@ -168,6 +171,8 @@ public class TroopController : CardController<TroopCardData>
         }
 
         IdleBehavior();
+        LookToMovement();
+        
 
         float distance = Vector3.Distance(transform.position, currentTarget.GetPosition());
 
@@ -226,7 +231,8 @@ public class TroopController : CardController<TroopCardData>
     {
         if (this.cardData.isRanged)
         {   
-            Attack();
+            // Attack();
+            PlayAttackAnimation();
         }
         else
         {
@@ -238,11 +244,23 @@ public class TroopController : CardController<TroopCardData>
 
     public void Attack()
     {
+        if (!IsServer)
+        {
+            return;
+        }
+
         this.cardData.BaseAttack(this, currentTarget);
     }
     
 
     private void PlayAttackAnimation()
+    {
+        OnAttack?.Invoke();
+        PlayAttackAnimationClientRpc();
+    }
+
+    [ClientRpc]
+    private void PlayAttackAnimationClientRpc()
     {
         OnAttack?.Invoke();
     }
@@ -258,7 +276,7 @@ public class TroopController : CardController<TroopCardData>
 
         foreach (var target in allTargets)
         {
-            if (target.team == team.Value) continue;
+            if (target.team.Value == team.Value) continue;
             if (target.gameObject == gameObject) continue;
 
             Vector3 targetPosition = target.GetPosition();
@@ -287,6 +305,19 @@ public class TroopController : CardController<TroopCardData>
         if (direction != Vector3.zero)
         {
             Quaternion lookRotation = Quaternion.LookRotation(direction);
+            // Rotação suave em vez de instantânea
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
+        }
+    }
+
+    private void LookToMovement()
+    {
+        Vector3 velocity = navMeshAgent.desiredVelocity;
+        velocity.y = 0;
+
+        if (velocity != Vector3.zero)
+        {
+            Quaternion lookRotation = Quaternion.LookRotation(velocity.normalized);
             // Rotação suave em vez de instantânea
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
         }

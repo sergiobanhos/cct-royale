@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c34c4ea26a2a4e65bf5267f2c3c1cb0, type: 3}
+  m_Name: Cirillo
+  m_EditorClassIdentifier: 
+  id: cirillo
+  cost: 6
+  deployTime: 0.15
+  name: Belmondo
+  sprite: {fileID: 21300000, guid: 9919d8fa06d3f45b5bfc9e68fffda0b3, type: 3}
+  prefab: {fileID: 1496519218657166628, guid: a8b98b639882b414e9ff57cd1c5a7924, type: 3}
+  previewPrefab: {fileID: 4244531953468716465, guid: 945e872e0c9c74590a775a9a950289fe, type: 3}
+  stats:
+    health: 500
+    moveSpeed: 7
+    attackDamage: 50
+    attackRange: 30
+    attackRate: 0.8
+  isRanged: 1
+  projectilePrefab: {fileID: 1878968031844185253, guid: e3090a16cd2724c38bb24ac97d90fc37, type: 3}

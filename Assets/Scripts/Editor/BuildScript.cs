@@ -37,6 +37,16 @@ public static class BuildScript
             subtarget = (int)StandaloneBuildSubtarget.Server
         };
         BuildPipeline.BuildPlayer(serverOptions);
+
+        BuildPlayerOptions windowsClientOptions = new BuildPlayerOptions
+        {
+            scenes = scenes,
+            locationPathName = "Builds/WindowsClient/CCTRoyale.exe",
+            target = BuildTarget.StandaloneWindows64,
+            options = BuildOptions.None,
+            subtarget = (int)StandaloneBuildSubtarget.Player
+        };
+        BuildPipeline.BuildPlayer(windowsClientOptions);
     }
 
     [MenuItem("Build/Build Server Only")]
@@ -51,5 +61,19 @@ public static class BuildScript
             subtarget = (int)StandaloneBuildSubtarget.Server
         };
         BuildPipeline.BuildPlayer(serverOptions);
+    }
+
+    [MenuItem("Build/Build Windows Client")]
+    public static void BuildWindowsClient()
+    {
+        BuildPlayerOptions clientOptions = new BuildPlayerOptions
+        {
+            scenes = scenes,
+            locationPathName = "Builds/WindowsClient/CCTRoyale.exe",
+            target = BuildTarget.StandaloneWindows64,
+            options = BuildOptions.None,
+            subtarget = (int)StandaloneBuildSubtarget.Player
+        };
+        BuildPipeline.BuildPlayer(clientOptions);
     }
 }

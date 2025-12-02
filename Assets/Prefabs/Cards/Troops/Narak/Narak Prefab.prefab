@@ -48,6 +48,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 591675145998313403, guid: 3214a6a2a67344ff3a9ece19a8ee97cb, type: 3}
+      propertyPath: m_Radius
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1512459739540896448, guid: 3214a6a2a67344ff3a9ece19a8ee97cb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8851
+      objectReference: {fileID: 0}
+    - target: {fileID: 1512459739540896448, guid: 3214a6a2a67344ff3a9ece19a8ee97cb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.80439657
+      objectReference: {fileID: 0}
+    - target: {fileID: 1512459739540896448, guid: 3214a6a2a67344ff3a9ece19a8ee97cb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8851
+      objectReference: {fileID: 0}
+    - target: {fileID: 2696698636235408949, guid: 3214a6a2a67344ff3a9ece19a8ee97cb, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2435367579533464329, guid: e481cd31e63dc4ccaa00105a16979b2f, type: 3}
+    - target: {fileID: 3530382084881874181, guid: 3214a6a2a67344ff3a9ece19a8ee97cb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 3739595695708797111, guid: 3214a6a2a67344ff3a9ece19a8ee97cb, type: 3}
+      propertyPath: m_Radius
+      value: 0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4764098989586374842, guid: 3214a6a2a67344ff3a9ece19a8ee97cb, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 1b4dd71a8ae5241e28bc47db7921bc36, type: 2}
     - target: {fileID: 5094390769684080849, guid: 3214a6a2a67344ff3a9ece19a8ee97cb, type: 3}
       propertyPath: m_Name
       value: Narak Prefab
